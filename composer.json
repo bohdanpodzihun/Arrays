@@ -1,0 +1,13 @@
+{
+    "authors": [
+        {
+            "name": "bohdanpodzihun",
+            "email": "bohdanpodzihun@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sorting\\": "src"
+        }
+    }
+}
