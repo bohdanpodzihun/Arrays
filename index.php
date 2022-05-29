@@ -14,11 +14,11 @@
 
         use Sorting\Generate;
         use Sorting\ConvertAndSort;
-        use Sorting\Horizontal;
-        use Sorting\Vertical;
-        use Sorting\Snake;
-        use Sorting\Diagonal;
-        use Sorting\Snail;
+        use Sorting\sorters\Horizontal;
+        use Sorting\sorters\Vertical;
+        use Sorting\sorters\Snake;
+        use Sorting\sorters\Diagonal;
+        use Sorting\sorters\Snail;
 
         $generate = new Generate();
         $convertAndSort = new ConvertAndSort();

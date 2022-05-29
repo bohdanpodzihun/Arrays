@@ -1,6 +1,6 @@
 <?php
 
-namespace Sorting;
+namespace Sorting\sorters;
 
 class Diagonal
 {
