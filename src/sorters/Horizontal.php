@@ -4,34 +4,16 @@ namespace Sorting\sorters;
 
 class Horizontal 
 {
-    public $horizontalArray = array();
-
-    public function getHorizontalArray(): array
+    public function horizontalSorting(array $array, int $size): array
     {
-        return $this->horizontalArray;
-    }
+        $horizontalArray = array();
 
-    public function setHorizontalArray(array $horizontalArray)
-    {
-        $this->horizontalArray = $horizontalArray;
-    }
-
-    public function horizontalSorting($array): array
-    {
-        $finalArray = array_chunk($array, 3);
-
-        return $finalArray;
-    }
-
-    public function outputArray()
-    {
-        echo "<br> Horizontal sorting: <br>";
-
-        for ($i = 0; $i < count($this->horizontalArray); $i++) {
-            for ($j = 0; $j < count($this->horizontalArray[$i]); $j++) {
-                echo " | " . $this->horizontalArray[$i][$j];
+        for ($i = 0; $i < $size; $i++) {
+            for ($j = 0; $j < $size; $j++) {
+                $horizontalArray[$i][$j] = $array[$i * $size + $j];
             }
-            echo " | <br>";
         }
+
+        return $horizontalArray;
     }
 }

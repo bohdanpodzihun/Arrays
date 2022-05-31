@@ -2,27 +2,20 @@
 
 namespace Sorting;
 
-class ConvertAndSort extends Generate
+class ConvertAndSort
 {
-    public $converted = array();
-
-    public function getConverted(): array
+    public function convertAndSort(array $inputArray, int $size): array
     {
-        return $this->converted;
+        $array = array();
+
+        for ($i = 0; $i < $size; $i++) {
+            for ($j = 0; $j < $size; $j++) {
+                $array[$i * $size + $j] = $inputArray[$i][$j];
+            }
+        }
+
+        sort($array);
+
+        return $array;
     }
-
-    public function setConverted(array $converted)
-    {
-        $this->converted = $converted;
-    }
-
-    public function convertAndSort($array): array
-    {
-        $convertedArray = call_user_func_array('array_merge', $array);
-
-        asort($convertedArray);
-
-        return $convertedArray;
-    }
-
 }

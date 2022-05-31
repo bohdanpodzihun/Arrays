@@ -4,37 +4,23 @@ namespace Sorting\sorters;
 
 class Diagonal
 {
-    public $diagonalArray = array();
-
-    public function getDiagonalArray(): array
+public function diagonalSorting(array $array, int $size): array
     {
-        return $this->diagonalArray;
-    }
+        $diagonalArray = array();
+        $shiftedArray = $array;
 
-    public function setDiagonalArray(array $diagonalArray)
-    {
-        $this->diagonalArray = $diagonalArray;
-    }
-
-    public function sort($array): array
-    {
-        $finalArray = array_chunk($array, 3);
-
-        return $finalArray;
-    }
-
-    public function diagonalSorting()
-    {
-        echo "<br> Diagonal sorting: <br>";
-
-        for ($k = 0; $k < count($this->diagonalArray) * 2; $k++) {
-            for ($j = 0; $j <= $k; $j++) {
-                $i = $k - $j;
-                if ($i < count($this->diagonalArray) && $j < count($this->diagonalArray)) {
-                    echo " | " . $this->diagonalArray[$i][$j];
-                }
+        for ($i = 0; $i < $size; $i++) {
+            for ($j = 0; $j < $size; $j++) {
+                $diagonalArray[$i - $j][$j] = array_shift($shiftedArray);
             }
-            echo " | <br>";
         }
+
+        for ($i = $size - 2; $i >= 0; $i--) {
+            for ($j = 0; $j <= $i; $j++) {
+                $diagonalArray[$size - 1 - $j][$size - 1 - $i + $j] = array_shift($shiftedArray);
+            }
+        }
+
+        return $diagonalArray;
     }
 }

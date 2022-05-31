@@ -4,33 +4,16 @@ namespace Sorting\sorters;
 
 class Vertical
 {
-    public $verticalArray = array();
-
-    public function getVerticalArray(): array
+    public function verticalSorting(array $array, int $size): array
     {
-        return $this->verticalArray;
-    }
+        $verticalArray = array();
 
-    public function setVerticalArray(array $verticalArray)
-    {
-        $this->verticalArray = $verticalArray;
-    }
-
-    public function verticalSorting($array): array
-    {
-        $finalArray = array_chunk($array, 3);
-
-        return $finalArray;
-    }
-
-    public function outputArray()
-    {
-        echo "<br> Vertical sorting: <br>";
-        for ($i = 0; $i < count($this->verticalArray); $i++) {
-            for ($j = 0; $j < count($this->verticalArray[$i]); $j++) {
-                echo " | " . $this->verticalArray[$j][$i];
+        for ($i = 0; $i < $size; $i++) {
+            for ($j = 0; $j < $size; $j++) {
+                $verticalArray[$i][$j] = $array[$j * $size + $i];
             }
-            echo " | <br>";
         }
+
+        return $verticalArray;
     }
 }

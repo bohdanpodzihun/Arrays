@@ -4,36 +4,43 @@ namespace Sorting\sorters;
 
 class Snail
 {
-    public $snailArray = array();
-
-    public function getSnailArray(): array
+    public function snailSorting(array $array, int $size): array
     {
-        return $this->snailArray;
-    }
+        $snailArray = array();
+        $shiftedArray = $array;
+        $coordinateX = -1;
+        $coordinateY = 0;
+        $xIteration = 1;
+        $yIteration = 0;
+        $sizeOfLine = $size - 1;
+        $i = 0;
+        $value = 0;
 
-    public function setSnailArray(array $snailArray)
-    {
-        $this->snailArray = $snailArray;
-    }
+        foreach ($array as $value) {
+            if ($i > $sizeOfLine) {
+                if ($xIteration === 1) {
+                    $xIteration = 0;
+                    $yIteration = 1;
+                    $sizeOfLine -= 1;
+                } elseif ($yIteration === 1) {
+                    $xIteration = -1;
+                    $yIteration = 0;
+                } elseif ($xIteration === -1) {
+                    $xIteration = 0;
+                    $yIteration = -1;
+                    $sizeOfLine -= 1;
+                } elseif ($yIteration === -1) {
+                    $xIteration = 1;
+                    $yIteration = 0;
+                }
+                $i = 0;
+            }
+            $i += 1;
+            $coordinateX += $xIteration;
+            $coordinateY += $yIteration;
+            $snailArray[$coordinateY][$coordinateX] = $value;
+        }
 
-    public function sort($array): array
-    {
-        $finalArray = array_chunk($array, 3);
-
-        return $finalArray;
-    }
-
-    public function snailSorting()
-    {
-        $n = 0;
-        $rows = count($this->snailArray);
-        $cols = count($this->snailArray[0]);
-        $top = 0;
-        $bottom = $rows - 1;
-        $left = 0;
-        $right = $cols - 1;
-        $dir = 1;
-
-
+        return $snailArray;
     }
 }

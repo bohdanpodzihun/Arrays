@@ -14,6 +14,7 @@
 
         use Sorting\Generate;
         use Sorting\ConvertAndSort;
+        use Sorting\Outputs;
         use Sorting\sorters\Horizontal;
         use Sorting\sorters\Vertical;
         use Sorting\sorters\Snake;
@@ -22,34 +23,38 @@
 
         $generate = new Generate();
         $convertAndSort = new ConvertAndSort();
+        $outputs = new Outputs();
         $horizontal = new Horizontal();
         $vertical = new Vertical();
         $snake = new Snake();
         $diagonal = new Diagonal();
         $snail = new Snail();
 
-        $generate->setArray($generate->generateArray());
-        $generate->outputArray();
+        $sizeOfArray = 7;
+        $inputArray = $generate->generate($sizeOfArray);
+        echo "Random generated input array: <br>";
+        $outputs->outputArray($inputArray);
+        $convertedAndSortedArray = $convertAndSort->convertAndSort($inputArray, $sizeOfArray);
 
-        $convertAndSort->setConverted($convertAndSort->convertAndSort($generate->array));
-        echo "<br> Converted into one-dimensional array and sorted by growth: <br>";
-        echo implode(", ", $convertAndSort->converted) . "<br>";
+        $horizontalForOutput = $horizontal->horizontalSorting($convertedAndSortedArray, $sizeOfArray);
+        echo "<br> Horizontal array: <br>";
+        $outputs->outputArray($horizontalForOutput);
 
-        $horizontal->setHorizontalArray($horizontal->horizontalSorting($convertAndSort->converted));
-        $horizontal->outputArray();
+        $verticalForOutput = $vertical->verticalSorting($convertedAndSortedArray, $sizeOfArray);
+        echo "<br> Vertical array: <br>";
+        $outputs->outputArray($verticalForOutput);
 
-        $vertical->setVerticalArray($vertical->verticalSorting($convertAndSort->converted));
-        $vertical->outputArray();
+        $snakeForOutput = $snake->snakeSorting($convertedAndSortedArray, $sizeOfArray);
+        echo "<br> Snake array: <br>";
+        $outputs->outputArray($snakeForOutput);
 
-        $snake->setSnakeArray($snake->snakeSorting($convertAndSort->converted));
-        $snake->outputArray();
+        $snailForOutput = $snail->snailSorting($convertedAndSortedArray, $sizeOfArray);
+        echo "<br> Snail array: <br>";
+        $outputs->outputArray($snailForOutput);
 
-        $diagonal->setDiagonalArray($diagonal->sort($convertAndSort->converted));
-        $diagonal->diagonalSorting();
-
-        echo "<br> Snail sorting: <br>";
-        $snail->setSnailArray($snail->sort($convertAndSort->converted));
-
+        $diagonalForOutput = $diagonal->diagonalSorting($convertedAndSortedArray, $sizeOfArray);
+        echo "<br> Diagonal array: <br>";
+        $outputs->outputArray($diagonalForOutput);
         ?>
     </div>
 
