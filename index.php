@@ -12,18 +12,22 @@
     <?php
         require 'vendor/autoload.php';
 
-        use Sorting\Generate;
-        use Sorting\ConvertAndSort;
-        use Sorting\Outputs;
-        use Sorting\sorters\Horizontal;
-        use Sorting\sorters\Vertical;
-        use Sorting\sorters\Snake;
-        use Sorting\sorters\Diagonal;
-        use Sorting\sorters\Snail;
+    use Sorting\ConvertAndSort;
+    use Sorting\Generate;
+    use Sorting\sorters\Diagonal;
+    use Sorting\sorters\Horizontal;
+    use Sorting\sorters\Snail;
+    use Sorting\sorters\Snake;
+    use Sorting\sorters\Vertical;
+    use Sorting\writers\Outputs;
+    use Sorting\writers\TxtWriter;
+    use Sorting\writers\DBWriter;
 
-        $generate = new Generate();
+    $generate = new Generate();
         $convertAndSort = new ConvertAndSort();
         $outputs = new Outputs();
+        $txtWriter = new TxtWriter();
+        $dbWriter = new DBWriter();
         $horizontal = new Horizontal();
         $vertical = new Vertical();
         $snake = new Snake();
@@ -32,29 +36,23 @@
 
         $sizeOfArray = 7;
         $inputArray = $generate->generate($sizeOfArray);
-        echo "Random generated input array: <br>";
-        $outputs->outputArray($inputArray);
+        $outputs->outputArray($inputArray, "Random generated input array");
         $convertedAndSortedArray = $convertAndSort->convertAndSort($inputArray, $sizeOfArray);
 
         $horizontalForOutput = $horizontal->horizontalSorting($convertedAndSortedArray, $sizeOfArray);
-        echo "<br> Horizontal array: <br>";
-        $outputs->outputArray($horizontalForOutput);
+        $outputs->outputArray($horizontalForOutput, "Horizontal array");
 
         $verticalForOutput = $vertical->verticalSorting($convertedAndSortedArray, $sizeOfArray);
-        echo "<br> Vertical array: <br>";
-        $outputs->outputArray($verticalForOutput);
+        $outputs->outputArray($verticalForOutput, "Vertical array");
 
         $snakeForOutput = $snake->snakeSorting($convertedAndSortedArray, $sizeOfArray);
-        echo "<br> Snake array: <br>";
-        $outputs->outputArray($snakeForOutput);
+        $outputs->outputArray($snakeForOutput, "Snake array");
 
         $snailForOutput = $snail->snailSorting($convertedAndSortedArray, $sizeOfArray);
-        echo "<br> Snail array: <br>";
-        $outputs->outputArray($snailForOutput);
+        $outputs->outputArray($snailForOutput, "Snail array");
 
         $diagonalForOutput = $diagonal->diagonalSorting($convertedAndSortedArray, $sizeOfArray);
-        echo "<br> Diagonal array: <br>";
-        $outputs->outputArray($diagonalForOutput);
+        $outputs->outputArray($diagonalForOutput, "Diagonal array");
         ?>
     </div>
 
